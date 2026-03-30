@@ -50,10 +50,8 @@
           </div>
 
           <div class="hero-card-frame">
-            <div class="hero-card-mark">{{ project.brandMark }}</div>
             <div class="hero-card-title">{{ project.title }}</div>
             <div class="hero-card-subtitle">{{ project.surfaceLabel }}</div>
-            <p> {{ debugText(index) }}</p>
           </div>
         </div>
       </button>
@@ -94,13 +92,6 @@ function normalizedOffset(index: number) {
   }
 
   return offset
-}
-
-function debugText(index: number) {
-  const arcStep = Math.max(0.30, Math.min(0.60, 560 / stageWidth.value))
-  const offset = normalizedOffset(index)
-  const angle = offset * arcStep
-  return angle
 }
 
 function cardStyle(index: number, project: Project) {
