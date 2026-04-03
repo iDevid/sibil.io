@@ -1,11 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+import AppPrivacyPage from './views/AppPrivacyPage.vue'
+import AppSupportPage from './views/AppSupportPage.vue'
 import BlogPage from './views/BlogPage.vue'
 import BlogPostPage from './views/BlogPostPage.vue'
 import CVPage from './views/CVPage.vue'
 import ContactPage from './views/ContactPage.vue'
 import HomePage from './views/HomePage.vue'
-import PrivacyPage from './views/PrivacyPage.vue'
+import { lupia, sequence } from './models/apps'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -31,12 +33,24 @@ const router = createRouter({
       component: ContactPage,
     },
     {
-      path: '/lupia/support',
-      component: ContactPage,
+      path: '/lupia/privacy',
+      component: AppPrivacyPage,
+      props: { app: lupia },
     },
     {
-      path: '/lupia/privacy',
-      component: PrivacyPage,
+      path: '/lupia/support',
+      component: AppSupportPage,
+      props: { app: lupia },
+    },
+    {
+      path: '/sequence/privacy',
+      component: AppPrivacyPage,
+      props: { app: sequence },
+    },
+    {
+      path: '/sequence/support',
+      component: AppSupportPage,
+      props: { app: sequence },
     },
   ],
   scrollBehavior(to) {
