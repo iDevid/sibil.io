@@ -511,6 +511,10 @@ main {
     padding-inline: 20px;
   }
 
+  .hero-compact {
+    padding-inline: 20px;
+  }
+
   .hero-carousel-stage {
     height: clamp(400px, 54vh, 560px);
     min-height: 400px;
@@ -524,7 +528,7 @@ main {
   }
 
   .section {
-    width: min(100% - 24px, 980px);
+    width: min(100% - 40px, 980px);
   }
 }
 
