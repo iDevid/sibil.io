@@ -2,12 +2,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import AppPrivacyPage from './views/AppPrivacyPage.vue'
 import AppSupportPage from './views/AppSupportPage.vue'
+import AppTermsPage from './views/AppTermsPage.vue'
 import BlogPage from './views/BlogPage.vue'
 import BlogPostPage from './views/BlogPostPage.vue'
 import CVPage from './views/CVPage.vue'
 import ContactPage from './views/ContactPage.vue'
 import HomePage from './views/HomePage.vue'
-import { lupia, sequence } from './models/apps'
+import { apps } from './models/apps'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -33,24 +34,19 @@ const router = createRouter({
       component: ContactPage,
     },
     {
-      path: '/lupia/privacy',
+      path: '/:slug/privacy',
       component: AppPrivacyPage,
-      props: { app: lupia },
+      props: (route) => ({ app: apps.find((a) => a.slug === route.params.slug) }),
     },
     {
-      path: '/lupia/support',
+      path: '/:slug/support',
       component: AppSupportPage,
-      props: { app: lupia },
+      props: (route) => ({ app: apps.find((a) => a.slug === route.params.slug) }),
     },
     {
-      path: '/sequence/privacy',
-      component: AppPrivacyPage,
-      props: { app: sequence },
-    },
-    {
-      path: '/sequence/support',
-      component: AppSupportPage,
-      props: { app: sequence },
+      path: '/:slug/terms',
+      component: AppTermsPage,
+      props: (route) => ({ app: apps.find((a) => a.slug === route.params.slug) }),
     },
   ],
   scrollBehavior(to) {
