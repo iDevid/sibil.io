@@ -61,4 +61,11 @@ const router = createRouter({
   },
 })
 
+router.afterEach((to) => {
+  window.gtag?.('event', 'page_view', {
+    page_path: to.fullPath,
+    page_title: document.title,
+  })
+})
+
 export default router
