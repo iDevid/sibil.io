@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "graph": "madge --extensions ts --ts-config tsconfig.json --image graph.svg src/ && open graph.svg"
   },
   "dependencies": {
+    "shiki": "^4.0.2",
     "vue": "^3.5.30",
     "vue-router": "^4.6.4"
   },

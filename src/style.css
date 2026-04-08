@@ -532,6 +532,32 @@ main {
   }
 }
 
+.code-block .shiki {
+  margin: 0;
+  padding: 20px 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  overflow-x: auto;
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  tab-size: 4;
+}
+
+.code-block-fallback {
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  overflow-x: auto;
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  tab-size: 4;
+  white-space: pre;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

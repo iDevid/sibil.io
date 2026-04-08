@@ -7,9 +7,13 @@
     </section>
 
     <article class="section article-body">
-      <p v-for="paragraph in post.content" :key="paragraph">
-        {{ paragraph }}
-      </p>
+      <template v-for="(block, i) in post.content" :key="i">
+        <p v-if="block.type === 'paragraph'" v-html="block.text" />
+        <h2 v-else-if="block.type === 'heading'" class="article-section-heading">{{ block.text }}</h2>
+        <aside v-else-if="block.type === 'callout'" class="article-callout">{{ block.text }}</aside>
+        <CodeBlock v-else-if="block.type === 'code'" :language="block.language" :code="block.code" />
+        <component :is="block.component" v-else-if="block.type === 'component'" />
+      </template>
     </article>
   </div>
 
@@ -27,6 +31,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { blogPostBySlug } from '../models/blog'
+import CodeBlock from '../components/CodeBlock.vue'
 
 const route = useRoute()
 
@@ -35,3 +40,34 @@ const post = computed(() => {
   return typeof slug === 'string' ? blogPostBySlug[slug] : undefined
 })
 </script>
+
+<style scoped>
+.article-section-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-top: 12px;
+}
+
+:deep(mark) {
+  background: rgba(184, 249, 127, 0.15);
+  color: var(--accent);
+  border-radius: 3px;
+  padding: 0 3px;
+  font-style: inherit;
+}
+
+.article-callout {
+  margin: 0;
+  padding: 18px 22px;
+  border-left: 3px solid var(--accent);
+  background: rgba(184, 249, 127, 0.05);
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+  font-style: italic;
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.6;
+}
+</style>
