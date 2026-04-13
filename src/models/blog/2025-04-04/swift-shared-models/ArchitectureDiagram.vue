@@ -6,11 +6,11 @@
     <div class="row consumers">
       <div class="node">
         <div class="node-box nb-ios">iOS App</div>
-        <div class="node-label">SwiftUI</div>
+        <div class="node-label">SwiftUI · Swift</div>
       </div>
       <div class="node">
         <div class="node-box nb-android">Android App</div>
-        <div class="node-label">Kotlin · swift-java</div>
+        <div class="node-label">Compose · Kotlin · swift-java</div>
       </div>
       <div class="node">
         <div class="node-box nb-backend">Vapor Backend</div>
@@ -211,7 +211,7 @@
 
   .nb-shared {
     font-size: 0.8rem;
-    padding: 0.75rem 0.85rem;
+    padding: 0.75rem 6rem;
   }
 }
 </style>
