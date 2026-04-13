@@ -1,9 +1,9 @@
-import type { BlogPost } from './types'
+import type { BlogPost } from '../types'
 import ArchitectureDiagram from './swift-shared-models/ArchitectureDiagram.vue'
 
 const post: BlogPost = {
   slug: 'swift-shared-models',
-  dateLabel: 'April 4, 2025',
+  dateLabel: 'April 13, 2025',
   eyebrow: 'Deep Dive · Swift 6.3',
   title: 'One Model to Rule Them All: Shared Packages Across iOS, Android & Backend',
   excerpt:
