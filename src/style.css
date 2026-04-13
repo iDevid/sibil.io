@@ -567,6 +567,37 @@ main {
   white-space: pre;
 }
 
+.site-footer {
+  display: flex;
+  justify-content: flex-end;
+  width: min(100% - 32px, 1320px);
+  margin: 0 auto;
+  padding: 16px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.site-footer-link:hover {
+  color: var(--muted);
+}
+
+.site-footer-icon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
