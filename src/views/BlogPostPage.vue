@@ -8,7 +8,8 @@
 
     <article class="section article-body">
       <template v-for="(block, i) in post.content" :key="i">
-        <p v-if="block.type === 'paragraph'" v-html="block.text" />
+        <JustifiedParagraph v-if="block.type === 'paragraph' && !hasHtml(block.text)" :text="block.text" />
+        <p v-else-if="block.type === 'paragraph'" v-html="block.text" />
         <h2 v-else-if="block.type === 'heading'" class="article-section-heading">{{ block.text }}</h2>
         <aside v-else-if="block.type === 'callout'" class="article-callout">{{ block.text }}</aside>
         <CodeBlock v-else-if="block.type === 'code'" :language="block.language" :code="block.code" />
@@ -32,7 +33,12 @@ import { useRoute } from 'vue-router'
 
 import { blogPostBySlug } from '../models/blog'
 import CodeBlock from '../components/CodeBlock.vue'
+import JustifiedParagraph from '../components/JustifiedParagraph.vue'
 import { useSeoMeta } from '../composables/useSeoMeta'
+
+function hasHtml(text: string): boolean {
+  return /<[a-z][\s\S]*>/i.test(text)
+}
 
 const route = useRoute()
 
@@ -48,6 +54,19 @@ useSeoMeta({
 </script>
 
 <style scoped>
+:deep(.justified-para),
+:deep(p) {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.7;
+}
+
+:deep(p) {
+  text-align: justify;
+  hyphens: auto;
+  text-align-last: left;
+}
+
 .article-section-heading {
   font-family: var(--serif);
   font-size: clamp(1.3rem, 2vw, 1.7rem);
