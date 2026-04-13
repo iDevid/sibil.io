@@ -32,12 +32,18 @@ import { useRoute } from 'vue-router'
 
 import { blogPostBySlug } from '../models/blog'
 import CodeBlock from '../components/CodeBlock.vue'
+import { useSeoMeta } from '../composables/useSeoMeta'
 
 const route = useRoute()
 
 const post = computed(() => {
   const slug = route.params.slug
   return typeof slug === 'string' ? blogPostBySlug[slug] : undefined
+})
+
+useSeoMeta({
+  title: computed(() => post.value?.title ?? ''),
+  description: computed(() => post.value?.excerpt),
 })
 </script>
 
