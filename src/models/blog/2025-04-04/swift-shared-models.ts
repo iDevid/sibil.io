@@ -264,6 +264,13 @@ import Foundation
       type: 'paragraph',
       text: 'Start small. Fork <a href="https://github.com/iDevid/TriForce" target="_blank" rel="noopener">TriForce</a>, swap PlayerCharacter for your own domain model, and point the backend at your database. Add the Linux test target. Watch the compiler tell you things you didn\'t know were wrong. Then keep going.',
     },
+
+    { type: 'heading', text: 'References' },
+
+    {
+      type: 'paragraph',
+      text: '<ul><li><a href="https://github.com/iDevid/TriForce" target="_blank" rel="noopener">TriForce Repo</a></li><li><a href="https://www.swift.org/blog/nightly-swift-sdk-for-android/" target="_blank" rel="noopener">Swift.org: Announcing the Swift SDK for Android</a></li><li><a href="https://www.swift.org/documentation/articles/swift-sdk-for-android-getting-started.html" target="_blank" rel="noopener">Swift.org: Getting Started with the Swift SDK for Android</a></li><li><a href="https://github.com/swiftlang/swift-java" target="_blank" rel="noopener">swift-java</a></li></ul>',
+    },
   ],
 }
 
