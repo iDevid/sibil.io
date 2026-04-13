@@ -59,6 +59,20 @@ const post = computed(() => {
   font-style: inherit;
 }
 
+:deep(ul) {
+  padding-left: 1.4rem;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+:deep(li) {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.6;
+}
+
 .article-callout {
   margin: 0;
   padding: 18px 22px;

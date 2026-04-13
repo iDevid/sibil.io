@@ -465,6 +465,8 @@ main {
 
 .article-body {
   max-width: 44rem;
+  /* minmax(0,1fr) prevents grid children from blowing past the column width */
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .contact-panel {
@@ -530,6 +532,13 @@ main {
   .section {
     width: min(100% - 40px, 980px);
   }
+}
+
+.code-block {
+  /* Contain the pre/shiki element inside the grid column */
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .code-block .shiki {
