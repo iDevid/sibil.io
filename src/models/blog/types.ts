@@ -10,6 +10,7 @@ export interface BlogPostSummary {
   dateLabel: string
   title: string
   excerpt: string
+  coverImage?: string
 }
 
 export interface BlogPost extends BlogPostSummary {

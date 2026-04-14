@@ -14,11 +14,12 @@ export const blogEntries: BlogPost[] = Object.entries(blogModules)
   .map(([, module]) => module.default)
 
 export const blogPosts: BlogPostSummary[] = blogEntries.map(
-  ({ slug, dateLabel, title, excerpt }) => ({
+  ({ slug, dateLabel, title, excerpt, coverImage }) => ({
     slug,
     dateLabel,
     title,
     excerpt,
+    coverImage,
   }),
 )
 

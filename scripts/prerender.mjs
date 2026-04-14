@@ -22,7 +22,7 @@ function esc(str) {
     .replace(/>/g, '&gt;')
 }
 
-function buildHtml({ title, description, url }) {
+function buildHtml({ title, description, url, image }) {
   const fullTitle = title ? `${title} · Davide Sibilio` : 'Davide Sibilio'
   const desc = description || 'iOS developer, indie maker.'
 
@@ -33,8 +33,17 @@ function buildHtml({ title, description, url }) {
     .replace(/(name="twitter:title"\s+content=")[^"]*"/, `$1${esc(fullTitle)}"`)
     .replace(/(name="twitter:description"\s+content=")[^"]*"/, `$1${esc(desc)}"`)
 
-  if (url) {
-    html = html.replace('</head>', `    <meta property="og:url" content="${esc(url)}" />\n  </head>`)
+  const extraTags = []
+  if (url) extraTags.push(`    <meta property="og:url" content="${esc(url)}" />`)
+  if (image) {
+    const absImage = image.startsWith('http') ? image : `${SITE_URL}${image}`
+    extraTags.push(`    <meta property="og:image" content="${esc(absImage)}" />`)
+    extraTags.push(`    <meta name="twitter:image" content="${esc(absImage)}" />`)
+    extraTags.push(`    <meta name="twitter:card" content="summary_large_image" />`)
+  }
+
+  if (extraTags.length) {
+    html = html.replace('</head>', `${extraTags.join('\n')}\n  </head>`)
   }
 
   return html
@@ -71,8 +80,10 @@ function scanBlogPosts() {
         content.match(/\bexcerpt:\s*\n?\s*"((?:[^"\\]|\\.)*)"\s*,/)
       const excerpt = excerptMatch?.[1]?.replace(/\\'/g, "'").replace(/\\"/g, '"')
 
+      const coverImage = content.match(/\bcoverImage:\s*['"]([^'"]+)['"]/)?.[1]
+
       if (slug && title) {
-        posts.push({ slug, title, excerpt })
+        posts.push({ slug, title, excerpt, coverImage })
       }
     }
   }
@@ -112,6 +123,7 @@ for (const post of posts) {
     title: post.title,
     description: post.excerpt,
     url: `${SITE_URL}/blog/${post.slug}`,
+    image: post.coverImage,
   })
 }
 

@@ -6,6 +6,10 @@
       <p class="lead article-date">{{ post.dateLabel }}</p>
     </section>
 
+    <div v-if="post.coverImage" class="section cover-image-wrap">
+      <img :src="post.coverImage" :alt="post.title" class="cover-image" />
+    </div>
+
     <article class="section article-body">
       <template v-for="(block, i) in post.content" :key="i">
         <JustifiedParagraph v-if="block.type === 'paragraph' && !hasHtml(block.text)" :text="block.text" />
@@ -54,6 +58,19 @@ useSeoMeta({
 </script>
 
 <style scoped>
+.cover-image-wrap {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.cover-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
 :deep(.justified-para),
 :deep(p) {
   color: var(--muted);

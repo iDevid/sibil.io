@@ -6,6 +6,7 @@ const post: BlogPost = {
   dateLabel: 'April 13, 2025',
   eyebrow: 'Deep Dive · Swift 6.3',
   title: 'One Model to Rule Them All: Shared Packages Across iOS, Android & Backend',
+  coverImage: '/blog/shared-models.jpg',
   excerpt:
     'With Swift 6.3\'s cross-platform Foundation and official Android target, a single Swift package can be your source of truth for domain models across iOS, Android, and a Vapor backend.',
   content: [
