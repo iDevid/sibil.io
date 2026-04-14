@@ -18,18 +18,11 @@
     </article>
   </div>
 
-  <div v-else class="page-content">
-    <section class="hero hero-compact">
-      <p class="eyebrow">Article</p>
-      <h1>Not found.</h1>
-      <p class="lead">The requested article does not exist.</p>
-    </section>
-  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, watchEffect } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 import { blogPostBySlug } from '../models/blog'
 import CodeBlock from '../components/CodeBlock.vue'
@@ -41,10 +34,17 @@ function hasHtml(text: string): boolean {
 }
 
 const route = useRoute()
+const router = useRouter()
 
 const post = computed(() => {
   const slug = route.params.slug
   return typeof slug === 'string' ? blogPostBySlug[slug] : undefined
+})
+
+watchEffect(() => {
+  if (route.params.slug && !post.value) {
+    router.replace({ path: '/404' })
+  }
 })
 
 useSeoMeta({

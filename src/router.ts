@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import AppPrivacyPage from './views/AppPrivacyPage.vue'
 import AppSupportPage from './views/AppSupportPage.vue'
@@ -8,10 +8,11 @@ import BlogPostPage from './views/BlogPostPage.vue'
 import CVPage from './views/CVPage.vue'
 import ContactPage from './views/ContactPage.vue'
 import HomePage from './views/HomePage.vue'
+import NotFoundPage from './views/NotFoundPage.vue'
 import { apps } from './models/apps'
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
@@ -47,6 +48,10 @@ const router = createRouter({
       path: '/:slug/terms',
       component: AppTermsPage,
       props: (route) => ({ app: apps.find((a) => a.slug === route.params.slug) }),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: NotFoundPage,
     },
   ],
   scrollBehavior(to) {
